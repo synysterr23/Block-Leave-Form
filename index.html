@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Leave BI Kaltara</title>
+    <meta name="description" content="Form Block Leave BI Kaltara - Bagikan pengalaman liburan terbaik Anda">
+    <style>
+        /* --- CSS dari desainmu --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 25px; }
+        .form-group label {
+            display: block; margin-bottom: 8px; font-weight: 600;
+            color: #333; font-size: 1.1em;
+        }
+        .required::after { content: " *"; color: #ff4757; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 15px; border: 2px solid #e0e0e0;
+            border-radius: 12px; font-size: 16px; background: #fff;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none; border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+        .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 10px 15px; border-radius: 25px; border: 2px solid transparent; }
+        .radio-item:hover { background: rgba(102, 126, 234, 0.1); border-color: rgba(102, 126, 234, 0.3);}
+        .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 40px; flex-wrap: wrap;}
+        .btn { padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; min-width: 150px;}
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;}
+        .btn-primary:hover { transform: translateY(-3px);}
+        .btn-secondary { background: #6c757d; color: white;}
+        .btn-secondary:hover { background: #545b62;}
+        @media (max-width: 768px) {
+            .form-container { padding: 25px 20px;}
+            .btn-group { flex-direction: column; align-items: center;}
+            .btn { width: 100%; max-width: 300px;}
+            .radio-group { flex-direction: column; gap: 10px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏝️ Block Leave BI Kaltara</h1>
+            <p>Bagikan pengalaman liburan terbaik Anda!</p>
+        </div>
+        <div class="form-container">
+            <!-- ALERT SUKSES/ERROR Formspree otomatis -->
+            <form id="blockLeaveForm" action="https://formspree.io/f/mnqkzodr" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nama" class="required">Nama Pegawai</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label class="required">Sudah Liburan Belum?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="sudah" name="sudah_liburan" value="Sudah" required>
+                            <label for="sudah">Sudah ✅</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="belum" name="sudah_liburan" value="Belum" required>
+                            <label for="belum">Belum ⏳</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="rencana" name="sudah_liburan" value="Ada Rencana" required>
+                            <label for="rencana">Ada Rencana 📅</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="required">Periode Block Leave</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="periode1" name="periode" value="Januari-Juni 2025" required>
+                            <label for="periode1">Januari-Juni 2025</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="periode2" name="periode" value="Juli-Desember 2025" required>
+                            <label for="periode2">Juli-Desember 2025</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tanggal" class="required">Tanggal Berapa Liburannya?</label>
+                    <input type="date" id="tanggal" name="tanggal" required>
+                </div>
+                <div class="form-group">
+                    <label for="destinasi" class="required">Liburannya Kemana Nih Kalau Boleh Tahu</label>
+                    <input type="text" id="destinasi" name="destinasi" placeholder="Contoh: Bali, Jakarta, Lombok..." required>
+                </div>
+                <div class="form-group">
+                    <label for="durasi" class="required">Berapa Hari Liburannya</label>
+                    <input type="number" id="durasi" name="durasi" min="1" placeholder="Masukkan jumlah hari..." required>
+                </div>
+                <div class="form-group">
+                    <label class="required">Sewaktu Menjalankan Block Leave, ada Telp/WA dari Kantor terkait pekerjaan?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="ada_kontak" name="kontak_kantor" value="Ada" required>
+                            <label for="ada_kontak">Ada 📞</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="tidak_ada_kontak" name="kontak_kantor" value="Tidak Ada" required>
+                            <label for="tidak_ada_kontak">Tidak Ada 🚫</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="kadang_kontak" name="kontak_kantor" value="Kadang-kadang" required>
+                            <label for="kadang_kontak">Kadang-kadang 📱</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pengalaman" class="required">Boleh sharing dong apa yang dirasakan setelah lepas dari rutinitas pekerjaan dan melaksanakan Block Leave</label>
+                    <textarea id="pengalaman" name="pengalaman" rows="5" placeholder="Ceritakan pengalaman dan perasaan Anda selama block leave..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="required">Jangan Lupa Share Foto Liburannya ya.. boleh lebih dari 1</label>
+                    <input type="file" id="foto" name="foto" multiple accept="image/*" required>
+                    <small>Format: JPG, PNG, GIF (Max 5MB per foto)</small>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">🚀 Kirim Data</button>
+                    <button type="reset" class="btn btn-secondary">🔄 Reset Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
