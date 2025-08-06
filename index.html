@@ -3,157 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOCK LEAVE BI KALTARA</title>
-    <meta name="description" content="Form Block Leave BI Kaltara - Bagikan pengalaman liburan terbaik Anda">
+    <title>Block Leave KPw BI Kaltara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS dari desainmu, bisa diubah sesuai keinginan --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            position: relative;
+            background: linear-gradient(115deg, #7F7FD5 0%, #86A8E7 55%, #91EAE4 100%);
+            font-family: 'Poppins', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
+        .glass-card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 18px;
+            box-shadow: 0 10px 32px 0 rgba(31, 38, 135, 0.15);
+            padding: 2.5rem 2.5rem;
+            max-width: 640px;
+            width: 100%;
+            margin: 32px auto;
+            animation: fadeinCard 0.8s;
         }
-        .header {
+        @keyframes fadeinCard {
+            from { opacity: 0; transform: translateY(40px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        .form-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.1em;
+            margin-bottom: 2.3rem;
+            animation: fadeinHeader 1.1s;
+        }
+        @keyframes fadeinHeader {
+            from { opacity: 0; transform: scale(0.85);}
+            to   { opacity: 1; transform: scale(1);}
+        }
+        .header-logo-img {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            object-fit: contain;
+            box-shadow: 0 2px 16px #7f7fd555, 0 1px 6px #91eae4cc;
+            background: #fff;
+            margin-bottom: 0.1em;
+            transition: transform 0.2s;
+        }
+        .header-logo-img:hover {
+            transform: scale(1.1) rotate(-4deg);
+        }
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg,#7F7FD5,#86A8E7,#91EAE4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
             text-align: center;
-            margin-bottom: 40px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 14px #91eae438;
         }
-        .form-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        .header-sub {
+            font-size: 1.13rem;
+            color: #5a4fcf;
+            margin-top: 0.15em;
+            margin-bottom: 0.15em;
+            text-align: center;
+            background: linear-gradient(90deg,#7F7FD5 50%,#91EAE4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .form-group { margin-bottom: 25px; }
-        .form-group label {
-            display: block; margin-bottom: 8px; font-weight: 600;
-            color: #333; font-size: 1.1em;
+        .header-desc {
+            font-size: 1.06rem;
+            color: #444;
+            margin-bottom: 0.15em;
+            text-align: center;
+            opacity: 0.83;
         }
-        .required::after { content: " *"; color: #ff4757; }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%; padding: 15px; border: 2px solid #e0e0e0;
-            border-radius: 12px; font-size: 16px; background: #fff;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none; border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
-        .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 10px 15px; border-radius: 25px; border: 2px solid transparent; }
-        .radio-item:hover { background: rgba(102, 126, 234, 0.1); border-color: rgba(102, 126, 234, 0.3);}
-        .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 40px; flex-wrap: wrap;}
-        .btn { padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; min-width: 150px;}
-        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;}
-        .btn-primary:hover { transform: translateY(-3px);}
-        .btn-secondary { background: #6c757d; color: white;}
-        .btn-secondary:hover { background: #545b62;}
-        @media (max-width: 768px) {
-            .form-container { padding: 25px 20px;}
-            .btn-group { flex-direction: column; align-items: center;}
-            .btn { width: 100%; max-width: 300px;}
-            .radio-group { flex-direction: column; gap: 10px;}
-        }
+        .form-group { margin-bottom: 1.15rem; position: relative;}
+        .form-label { display: flex; align-items: flex-start; font-weight: 500; margin-bottom: 0.45rem; color: #222; font-size: 1.12rem; gap: 0.5em;}
+        .form-label .icon-label { font-size: 1.23em; color: #5a4fcf; margin-top: 0.08em; margin-right: 0.18em; min-width: 26px; text-align: center;}
+        .form-label .required { color: #ff4757; font-weight: bold; margin-left: 0.3em;}
+        .form-desc { display: block; font-weight: 400; font-size: 0.98em; color: #666; margin-top: 0.09em; margin-bottom: 0.1em;}
+        .form-input, .form-textarea { width: 100%; padding: 0.48rem 1rem; border: 1.2px solid #e0e4ef; border-radius: 10px; background: #f7f8fa; font-size: 1.07rem; color: #222; box-shadow: 0 1px 4px rgba(102,126,234,0.03); outline: none; transition: border 0.22s, box-shadow 0.22s; margin-bottom: 0.05rem;}
+        .form-input:focus, .form-textarea:focus { border-color: #7F7FD5; box-shadow: 0 0 0 2px #91EAE4; animation: focusPulse 0.3s;}
+        @keyframes focusPulse { 0% { box-shadow: 0 0 0 0 #91EAE4; } 70% { box-shadow: 0 0 0 8px #91EAE4; } 100% { box-shadow: 0 0 0 2px #91EAE4; }}
+        .radio-group { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.05rem;}
+        .radio-item { display: flex; align-items: center; gap: 0.38rem; background: #f1f3fa; padding: 0.38rem 1.2rem; border-radius: 16px; cursor: pointer; border: 1.2px solid #e0e4ef; font-size: 1.04rem; transition: border 0.2s, background 0.2s, box-shadow 0.18s; box-shadow: 0 1px 4px rgba(102,126,234,0.04);}
+        .radio-item input[type="radio"] { accent-color: #7F7FD5; margin-right: 0.18rem; margin-left: 0;}
+        .radio-item:has(input[type="radio"]:checked) { border: 2px solid #7F7FD5; background: #eaf1fa; box-shadow: 0 2px 8px rgba(102,126,234,0.08);}
+        .radio-item:hover { border: 2px solid #7F7FD5;}
+        .form-textarea { resize: vertical; min-height: 44px; max-height: 180px;}
+        .error-message { color: #ff4757; font-size: 0.99em; margin-top: 2px; margin-bottom: 2px; position: absolute; left: 0; bottom: -20px; animation: shake .25s;}
+        @keyframes shake { 0% { transform: translateX(0);} 25% { transform: translateX(-6px);} 50% { transform: translateX(6px);} 75% { transform: translateX(-4px);} 100% { transform: translateX(0);}}
+        .btn-group { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;}
+        .btn { flex: 1; padding: 1rem 0; border-radius: 30px; border: none; font-size: 1.09rem; font-weight: bold; cursor: pointer; background: linear-gradient(90deg, #7F7FD5 0%, #86A8E7 100%); color: white; box-shadow: 0 2px 8px rgba(102,126,234,0.13); transition: transform 0.18s, box-shadow 0.24s, background 0.18s; margin-bottom: 0.7rem; position: relative; overflow: hidden;}
+        .btn:active { background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); transform: scale(0.98);}
+        .btn:after { content: ""; display: block; position: absolute; left: 50%; top: 50%; width: 0; height: 0; background: rgba(145,234,228,0.18); border-radius: 100%; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; z-index: 0;}
+        .btn:active:after { width: 220px; height: 220px; transition: width 0.3s, height 0.3s;}
+        .btn-secondary { background: linear-gradient(90deg,#91EAE4,#86A8E7); color: #333;}
+        .file-input { background: #f5f7fa; border-radius: 10px; padding: 0.48rem 1rem; border: 1.2px solid #e0e0e0; width: 100%; font-size: 1rem; margin-bottom: 0.18rem;}
+        .form-note { color: #888; font-size: 0.98em; margin-bottom: 0.2rem;}
+        .preview-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;}
+        .preview-img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; box-shadow: 0 1px 6px #91eae455; border: 1px solid #e0e4ef; transition: transform 0.18s;}
+        .preview-img:hover { transform: scale(1.13); z-index: 1;}
+        @media (max-width: 900px) { .glass-card { max-width: 98vw; }}
+        @media (max-width: 600px) { .glass-card { padding: 1.2rem 0.4rem; max-width: 99vw;} .radio-group, .btn-group {flex-direction: column;} .btn {width: 100%;}}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🏝️ Block Leave BI Kaltara</h1>
-            <p>Bagikan pengalaman liburan terbaik Anda!</p>
+    <div class="glass-card">
+        <div class="form-header">
+            <img src="https://raw.githubusercontent.com/synysterr23/assets-blockleave/refs/heads/main/budker.png" alt="Logo BI Kaltara" class="header-logo-img" />
+            <div class="header-title">Block Leave BI Kaltara</div>
+            <div class="header-sub">Form Pengalaman Block Leave</div>
+            <div class="header-desc">Isi data dan ceritakan pengalaman kamu selama block leave. Data dan cerita kamu sangat bermanfaat untuk BI Kaltara.</div>
         </div>
-        <div class="form-container">
-            <form action="https://getform.io/f/bjjokknb" method="POST" enctype="multipart/form-data" id="blockLeaveForm">
-                <div class="form-group">
-                    <label for="nama" class="required">Nama Pegawai</label>
-                    <input type="text" id="nama" name="nama" required>
+        <form id="blockLeaveForm" action="https://getform.io/f/{your-form-endpoint}" method="POST" enctype="multipart/form-data" novalidate>
+            <!-- Nama -->
+            <div class="form-group">
+                <label class="form-label" for="nama">
+                    <span class="icon-label">👤</span>Nama Pegawai
+                    <span class="required">*</span>
+                </label>
+                <input type="text" id="nama" name="nama" class="form-input" required maxlength="40" autocomplete="off">
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Sudah Liburan Belum (ICON SUDAH DIGANTI) -->
+            <div class="form-group">
+                <label class="form-label">
+                    <span class="icon-label">🌟</span>Sudah Block Leave Belum?
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group" id="liburan-group">
+                    <label class="radio-item"><input type="radio" name="sudah_liburan" value="Sudah" required><span>Sudah ✅</span></label>
+                    <label class="radio-item"><input type="radio" name="sudah_liburan" value="Belum" required><span>Belum ⏳</span></label>
+                    <label class="radio-item"><input type="radio" name="sudah_liburan" value="Ada Rencana" required><span>Ada Rencana 📅</span></label>
                 </div>
-                <div class="form-group">
-                    <label class="required">Sudah Liburan Belum?</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="sudah" name="sudah_liburan" value="Sudah" required>
-                            <label for="sudah">Sudah ✅</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="belum" name="sudah_liburan" value="Belum" required>
-                            <label for="belum">Belum ⏳</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="rencana" name="sudah_liburan" value="Ada Rencana" required>
-                            <label for="rencana">Ada Rencana 📅</label>
-                        </div>
-                    </div>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Periode Block Leave -->
+            <div class="form-group">
+                <label class="form-label">
+                    <span class="icon-label">🗓️</span>Periode Block Leave
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group" id="periode-group">
+                    <label class="radio-item"><input type="radio" name="periode" value="Januari-Juni 2025" required><span>Januari-Juni 2025</span></label>
+                    <label class="radio-item"><input type="radio" name="periode" value="Juli-Desember 2025" required><span>Juli-Desember 2025</span></label>
                 </div>
-                <div class="form-group">
-                    <label class="required">Periode Block Leave</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="periode1" name="periode" value="Januari-Juni 2025" required>
-                            <label for="periode1">Januari-Juni 2025</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="periode2" name="periode" value="Juli-Desember 2025" required>
-                            <label for="periode2">Juli-Desember 2025</label>
-                        </div>
-                    </div>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Tanggal Liburan -->
+            <div class="form-group">
+                <label class="form-label" for="tanggal">
+                    <span class="icon-label">📅</span>Tanggal Mulai Block Leave
+                    <span class="required">*</span>
+                </label>
+                <span class="form-desc">Tanggal mulai kamu menjalani block leave.</span>
+                <input type="date" id="tanggal" name="tanggal" class="form-input" required>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Destinasi -->
+            <div class="form-group">
+                <label class="form-label" for="destinasi">
+                    <span class="icon-label">✈️</span>Destinasi Liburan
+                    <span class="required">*</span>
+                </label>
+                <span class="form-desc">Ke mana tujuan liburan kamu selama block leave?</span>
+                <input type="text" id="destinasi" name="destinasi" class="form-input" required maxlength="40" autocomplete="off">
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Durasi -->
+            <div class="form-group">
+                <label class="form-label" for="durasi">
+                    <span class="icon-label">🕑</span>Durasi Block Leave (Hari)
+                    <span class="required">*</span>
+                </label>
+                <span class="form-desc">Berapa hari kamu menjalani block leave?</span>
+                <input type="number" id="durasi" name="durasi" min="1" max="30" class="form-input" required>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Kontak Kantor -->
+            <div class="form-group">
+                <label class="form-label">
+                    <span class="icon-label">📱</span>Apakah ada yang menghubungi dari kantor saat Block Leave?
+                    <span class="required">*</span>
+                </label>
+                <span class="form-desc">Selama block leave, apakah kamu pernah dihubungi terkait pekerjaan kantor?</span>
+                <div class="radio-group" id="kontak-group">
+                    <label class="radio-item"><input type="radio" name="kontak_kantor" value="Ada" required><span>Ada 📞</span></label>
+                    <label class="radio-item"><input type="radio" name="kontak_kantor" value="Tidak Ada" required><span>Tidak Ada 🚫</span></label>
+                    <label class="radio-item"><input type="radio" name="kontak_kantor" value="Kadang-kadang" required><span>Kadang-kadang 🤙</span></label>
                 </div>
-                <div class="form-group">
-                    <label for="tanggal" class="required">Tanggal Berapa Liburannya?</label>
-                    <input type="date" id="tanggal" name="tanggal" required>
-                </div>
-                <div class="form-group">
-                    <label for="destinasi" class="required">Liburannya Kemana Nih Kalau Boleh Tahu</label>
-                    <input type="text" id="destinasi" name="destinasi" placeholder="Contoh: Bali, Jakarta, Lombok..." required>
-                </div>
-                <div class="form-group">
-                    <label for="durasi" class="required">Berapa Hari Liburannya</label>
-                    <input type="number" id="durasi" name="durasi" min="1" placeholder="Masukkan jumlah hari..." required>
-                </div>
-                <div class="form-group">
-                    <label class="required">Sewaktu Menjalankan Block Leave, ada Telp/WA dari Kantor terkait pekerjaan?</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" id="ada_kontak" name="kontak_kantor" value="Ada" required>
-                            <label for="ada_kontak">Ada 📞</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="tidak_ada_kontak" name="kontak_kantor" value="Tidak Ada" required>
-                            <label for="tidak_ada_kontak">Tidak Ada 🚫</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="kadang_kontak" name="kontak_kantor" value="Kadang-kadang" required>
-                            <label for="kadang_kontak">Kadang-kadang 📱</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="pengalaman" class="required">Boleh sharing dong apa yang dirasakan setelah lepas dari rutinitas pekerjaan dan melaksanakan Block Leave</label>
-                    <textarea id="pengalaman" name="pengalaman" rows="5" placeholder="Ceritakan pengalaman dan perasaan Anda selama block leave..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="required">Jangan Lupa Share Foto Liburannya ya.. boleh lebih dari 1</label>
-                    <input type="file" id="foto" name="foto[]" multiple accept="image/*" required>
-                    <small>Format: JPG, PNG, GIF (Max 5MB per foto)</small>
-                </div>
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-primary">🚀 Kirim Data</button>
-                    <button type="reset" class="btn btn-secondary">🔄 Reset Form</button>
-                </div>
-            </form>
-        </div>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Pengalaman & Perasaan -->
+            <div class="form-group">
+                <label class="form-label" for="pengalaman">
+                    <span class="icon-label">💬</span>Ceritakan pengalaman dan perasaan kamu selama block leave
+                    <span class="required">*</span>
+                </label>
+                <span class="form-desc">Bagikan cerita, pengalaman, dan perasaan kamu selama menjalani block leave. Misalnya: suasana, manfaat, tantangan, dsb.</span>
+                <textarea id="pengalaman" name="pengalaman" class="form-textarea" rows="4" required maxlength="200"></textarea>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Upload Foto -->
+            <div class="form-group">
+                <label class="form-label" for="foto">
+                    <span class="icon-label">🖼️</span>Upload foto liburan
+                    <span class="required">*</span>
+                </label>
+                <span class="form-desc">Upload foto terbaik selama block leave (maks 5MB per foto, JPG/PNG/GIF).</span>
+                <input type="file" id="foto" name="foto[]" multiple accept="image/jpeg,image/png,image/gif" class="file-input" required>
+                <div class="form-note">Upload maksimal 5 foto.</div>
+                <div class="preview-group" id="preview-group"></div>
+                <div class="error-message" style="display:none;"></div>
+            </div>
+            <!-- Button -->
+            <div class="btn-group">
+                <button type="submit" class="btn">🚀 Kirim Data</button>
+                <button type="reset" class="btn btn-secondary">🔄 Reset</button>
+            </div>
+        </form>
     </div>
+    <script>
+    // Preview Foto
+    document.getElementById('foto').addEventListener('change',function(e){
+        const preview = document.getElementById('preview-group');
+        preview.innerHTML = '';
+        const files = Array.from(e.target.files).slice(0,5); // Maksimal 5
+        files.forEach(file => {
+            if(file.size > 5*1024*1024) return; // Skip yang >5MB
+            if(!file.type.match(/^image\//)) return;
+            const reader = new FileReader();
+            reader.onload = function(ev){
+                const img = document.createElement('img');
+                img.src = ev.target.result;
+                img.className = 'preview-img';
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // Validasi custom
+    document.getElementById('blockLeaveForm').addEventListener('submit', function(e){
+        let valid = true;
+        const form = e.target;
+        function showError(input, msg){
+            const group = input.closest('.form-group');
+            const em = group.querySelector('.error-message');
+            em.textContent = msg;
+            em.style.display = 'block';
+            input.classList.add('error');
+            valid = false;
+        }
+        function hideError(input){
+            const group = input.closest('.form-group');
+            const em = group.querySelector('.error-message');
+            em.textContent = '';
+            em.style.display = 'none';
+            input.classList.remove('error');
+        }
+        // Nama
+        const nama = form.nama;
+        if(!nama.value.trim()) showError(nama, 'Nama wajib diisi!');
+        else if(nama.value.length > 40) showError(nama, 'Maksimal 40 karakter!');
+        else hideError(nama);
+        // Sudah Liburan
+        if(!form.sudah_liburan.value) showError(form.sudah_liburan, 'Pilih salah satu!');
+        else hideError(form.sudah_liburan);
+        // Periode
+        if(!form.periode.value) showError(form.periode, 'Pilih salah satu!');
+        else hideError(form.periode);
+        // Tanggal
+        const tanggal = form.tanggal;
+        if(!tanggal.value) showError(tanggal, 'Tanggal wajib diisi!');
+        else hideError(tanggal);
+        // Destinasi
+        const destinasi = form.destinasi;
+        if(!destinasi.value.trim()) showError(destinasi, 'Destinasi wajib diisi!');
+        else if(destinasi.value.length > 40) showError(destinasi, 'Maksimal 40 karakter!');
+        else hideError(destinasi);
+        // Durasi
+        const durasi = form.durasi;
+        if(!durasi.value) showError(durasi, 'Durasi wajib diisi!');
+        else if(+durasi.value < 1) showError(durasi, 'Minimal 1 hari!');
+        else if(+durasi.value > 30) showError(durasi, 'Maksimal 30 hari!');
+        else hideError(durasi);
+        // Kontak Kantor
+        if(!form.kontak_kantor.value) showError(form.kontak_kantor, 'Pilih salah satu!');
+        else hideError(form.kontak_kantor);
+        // Pengalaman
+        const pengalaman = form.pengalaman;
+        if(!pengalaman.value.trim()) showError(pengalaman, 'Wajib diisi!');
+        else if(pengalaman.value.length > 200) showError(pengalaman, 'Maksimal 200 karakter!');
+        else hideError(pengalaman);
+        // Foto
+        const foto = form['foto[]'] || form.foto;
+        const files = foto.files;
+        let fotoValid = false;
+        if(files.length === 0) showError(foto, 'Minimal upload 1 foto!');
+        else if(files.length > 5) showError(foto, 'Maksimal 5 foto!');
+        else {
+            fotoValid = true;
+            for(let f of files){
+                if(!f.type.match(/^image\//)) { fotoValid = false; showError(foto, 'Hanya format gambar JPG/PNG/GIF!'); break;}
+                if(f.size > 5*1024*1024) { fotoValid = false; showError(foto, 'Ukuran foto max 5MB!'); break;}
+            }
+            if(fotoValid) hideError(foto);
+        }
+        if(!valid){
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    document.getElementById('blockLeaveForm').addEventListener('reset', function(){
+        document.querySelectorAll('.error-message').forEach(e=>e.style.display='none');
+        document.getElementById('preview-group').innerHTML = '';
+        document.querySelectorAll('.form-input,.form-textarea').forEach(e=>e.classList.remove('error'));
+    });
+    </script>
 </body>
 </html>
