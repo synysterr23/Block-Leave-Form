@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Leave BI Kaltara</title>
+    <title>BLOCK LEAVE BI KALTARA</title>
     <meta name="description" content="Form Block Leave BI Kaltara - Bagikan pengalaman liburan terbaik Anda">
     <style>
-        /* --- CSS dari desainmu --- */
+        /* --- CSS dari desainmu, bisa diubah sesuai keinginan --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -75,8 +75,7 @@
             <p>Bagikan pengalaman liburan terbaik Anda!</p>
         </div>
         <div class="form-container">
-            <!-- ALERT SUKSES/ERROR Formspree otomatis -->
-            <form id="blockLeaveForm" action="https://formspree.io/f/mdkdwvev" method="POST" enctype="multipart/form-data">
+            <form action="https://getform.io/f/bjjokknb" method="POST" enctype="multipart/form-data" id="blockLeaveForm">
                 <div class="form-group">
                     <label for="nama" class="required">Nama Pegawai</label>
                     <input type="text" id="nama" name="nama" required>
@@ -146,7 +145,7 @@
                 </div>
                 <div class="form-group">
                     <label class="required">Jangan Lupa Share Foto Liburannya ya.. boleh lebih dari 1</label>
-                    <input type="file" id="foto" name="foto" multiple accept="image/*" required>
+                    <input type="file" id="foto" name="foto[]" multiple accept="image/*" required>
                     <small>Format: JPG, PNG, GIF (Max 5MB per foto)</small>
                 </div>
                 <div class="btn-group">
@@ -157,5 +156,4 @@
         </div>
     </div>
 </body>
-
 </html>
