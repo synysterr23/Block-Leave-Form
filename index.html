@@ -19,7 +19,6 @@
             background: rgba(255,255,255,0.98);
             border-radius: 22px;
             box-shadow: 0 10px 32px 0 rgba(31, 38, 135, 0.15);
-            /* Lebar tetap, padding kiri-kanan besar agar konten tidak mepet */
             padding: 0 36px 2.5rem 36px;
             max-width: 640px;
             width: 100%;
@@ -107,7 +106,6 @@
         .preview-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;}
         .preview-img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; box-shadow: 0 1px 6px #91eae455; border: 1px solid #e0e4ef; transition: transform 0.18s;}
         .preview-img:hover { transform: scale(1.13); z-index: 1;}
-        /* Blokir section form jika belum atau ada rencana */
         .section-blocked {
             pointer-events: none;
             opacity: 0.45;
@@ -125,7 +123,6 @@
             border: 1.5px solid #ffbdbd;
             animation: shake .20s;
         }
-        /* LOGO DI BAWAH FORM */
         .footer-logo-group {
             width: 100%;
             display: flex;
@@ -265,8 +262,8 @@
                         <span class="required">*</span>
                     </label>
                     <span class="form-desc">Upload foto terbaik selama block leave (maks 5MB per foto, JPG/PNG/GIF).</span>
-                    <input type="file" id="foto" name="foto[]" multiple accept="image/jpeg,image/png,image/gif" class="file-input" required>
-                    <div class="form-note">Upload maksimal 1 foto.</div>
+                    <input type="file" id="foto" name="foto" accept="image/jpeg,image/png,image/gif" class="file-input" required>
+                    <div class="form-note">Upload 1 foto saja.</div>
                     <div class="preview-group" id="preview-group"></div>
                     <div class="error-message" style="display:none;"></div>
                 </div>
@@ -315,14 +312,12 @@
     });
     window.addEventListener('DOMContentLoaded', updateBlockLeaveStatus);
 
-    // Preview Foto
+    // Preview Foto (hanya 1 foto)
     document.getElementById('foto').addEventListener('change',function(e){
         const preview = document.getElementById('preview-group');
         preview.innerHTML = '';
-        const files = Array.from(e.target.files).slice(0,5); // Maksimal 5
-        files.forEach(file => {
-            if(file.size > 5*1024*1024) return; // Skip yang >5MB
-            if(!file.type.match(/^image\//)) return;
+        const file = e.target.files[0];
+        if(file && file.size <= 5*1024*1024 && file.type.match(/^image\//)) {
             const reader = new FileReader();
             reader.onload = function(ev){
                 const img = document.createElement('img');
@@ -331,7 +326,7 @@
                 preview.appendChild(img);
             };
             reader.readAsDataURL(file);
-        });
+        }
     });
 
     // Validasi custom
@@ -394,18 +389,15 @@
         else if(pengalaman.value.length > 200) showError(pengalaman, 'Maksimal 200 karakter!');
         else hideError(pengalaman);
         // Foto
-        const foto = form['foto[]'] || form.foto;
+        const foto = form.foto;
         const files = foto.files;
-        let fotoValid = false;
-        if(files.length === 0) showError(foto, 'Minimal upload 1 foto!');
-        else if(files.length > 5) showError(foto, 'Maksimal 5 foto!');
+        if(files.length === 0) showError(foto, 'Upload 1 foto!');
+        else if(files.length > 1) showError(foto, 'Hanya boleh upload 1 foto!');
         else {
-            fotoValid = true;
-            for(let f of files){
-                if(!f.type.match(/^image\//)) { fotoValid = false; showError(foto, 'Hanya format gambar JPG/PNG/GIF!'); break;}
-                if(f.size > 5*1024*1024) { fotoValid = false; showError(foto, 'Ukuran foto max 5MB!'); break;}
-            }
-            if(fotoValid) hideError(foto);
+            const f = files[0];
+            if(!f.type.match(/^image\//)) { showError(foto, 'Hanya format gambar JPG/PNG/GIF!'); }
+            else if(f.size > 5*1024*1024) { showError(foto, 'Ukuran foto max 5MB!'); }
+            else { hideError(foto); }
         }
         if(!valid){
             e.preventDefault();
@@ -422,5 +414,3 @@
     </script>
 </body>
 </html>
-
-
